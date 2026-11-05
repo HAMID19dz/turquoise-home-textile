@@ -1,0 +1,624 @@
+"""
+Unit tests for pipeline/normalize.py
+
+Tests cover:
+  - canonical_key: URL normalization
+  - skill_id: stable SHA256 identifier
+  - build_embedding_text: text construction for embedding
+  - merge_records: metadata priority merge
+  - build_install_cmds: install command generation
+  - passes_quality_filter: quality gate logic
+  - normalize: end-to-end pipeline function
+  - QualityGateError: raised when min_skills threshold not met
+  - normalize quality-stats logging
+"""
+import hashlib
+import json
+import logging
+import os
+
+import pytest
+
+from pipeline.normalize import (
+    QualityGateError,
+    build_embedding_text,
+    build_install_cmds,
+    canonical_key,
+    merge_records,
+    normalize,
+    passes_quality_filter,
+    skill_id,
+)
+
+
+# ---------------------------------------------------------------------------
+# canonical_key
+# ---------------------------------------------------------------------------
+
+class TestCanonicalKey:
+    def test_lowercases_url(self):
+        assert canonical_key("https://GitHub.COM/User/Repo") == "https://github.com/user/repo"
+
+    def test_strips_git_suffix(self):
+        assert canonical_key("https://github.com/user/repo.git") == "https://github.com/user/repo"
+
+    def test_strips_trailing_slash(self):
+        assert canonical_key("https://github.com/user/repo/") == "https://github.com/user/repo"
+
+    def test_strips_both_git_and_slash(self):
+        result = canonical_key("https://github.com/user/repo.git/")
+        assert result == "https://github.com/user/repo"
+
+    def test_leaves_clean_url_unchanged(self):
+        url = "https://github.com/user/repo"
+        assert canonical_key(url) == url
+
+    def test_three_variants_same_key(self, raw_records_with_overlap):
+        keys = {canonical_key(r["repo_url"]) for r in raw_records_with_overlap}
+        assert len(keys) == 1, f"Expected 1 unique key, got {len(keys)}: {keys}"
+
+    def test_raises_on_empty_string(self):
+        with pytest.raises(ValueError):
+            canonical_key("")
+
+    def test_raises_on_none(self):
+        with pytest.raises((ValueError, TypeError)):
+            canonical_key(None)
+
+    def test_clawdbot_org_redirect(self):
+        """clawdbot/ repos are canonicalized to openclaw/."""
+        assert canonical_key("https://github.com/clawdbot/my-skill") == \
+               "https://github.com/openclaw/my-skill"
+
+    def test_moltbot_org_redirect(self):
+        """moltbot/ repos are canonicalized to openclaw/."""
+        assert canonical_key("https://github.com/moltbot/my-skill") == \
+               "https://github.com/openclaw/my-skill"
+
+    def test_clawdbot_clawdbot_specific_rename(self):
+        """clawdbot/clawdbot is the legacy name for openclaw/openclaw."""
+        assert canonical_key("https://github.com/clawdbot/clawdbot") == \
+               "https://github.com/openclaw/openclaw"
+
+    def test_redirect_enables_cross_source_dedup(self):
+        """A repo crawled as clawdbot/X and openclaw/X produce the same canonical key."""
+        old_url = "https://github.com/clawdbot/awesome-skill"
+        new_url = "https://github.com/openclaw/awesome-skill"
+        assert canonical_key(old_url) == canonical_key(new_url)
+
+
+# ---------------------------------------------------------------------------
+# skill_id
+# ---------------------------------------------------------------------------
+
+class TestSkillId:
+    def test_returns_64_char_hex(self):
+        sid = skill_id("https://github.com/user/repo")
+        assert len(sid) == 64
+        assert all(c in "0123456789abcdef" for c in sid)
+
+    def test_deterministic(self):
+        url = "https://github.com/user/repo"
+        assert skill_id(url) == skill_id(url)
+
+    def test_matches_manual_sha256(self):
+        url = "https://github.com/user/repo"
+        expected = hashlib.sha256(canonical_key(url).encode()).hexdigest()
+        assert skill_id(url) == expected
+
+    def test_different_urls_different_ids(self):
+        a = skill_id("https://github.com/user/repo-a")
+        b = skill_id("https://github.com/user/repo-b")
+        assert a != b
+
+    def test_git_suffix_variant_same_id(self):
+        assert skill_id("https://github.com/user/repo") == skill_id("https://github.com/user/repo.git")
+
+    def test_uppercase_variant_same_id(self):
+        assert skill_id("https://github.com/user/repo") == skill_id("https://GitHub.com/user/repo")
+
+
+# ---------------------------------------------------------------------------
+# build_embedding_text
+# ---------------------------------------------------------------------------
+
+class TestBuildEmbeddingText:
+    def test_includes_name(self, skill):
+        assert skill["name"] in build_embedding_text(skill)
+
+    def test_includes_description(self, skill):
+        assert skill["description"] in build_embedding_text(skill)
+
+    def test_includes_categories(self, skill):
+        text = build_embedding_text(skill)
+        for cat in skill["categories"]:
+            assert cat in text
+
+    def test_does_not_include_install_commands(self, skill):
+        text = build_embedding_text(skill)
+        assert "/plugin install" not in text
+        assert "clawhub install" not in text
+
+    def test_does_not_include_star_count(self, skill):
+        text = build_embedding_text(skill)
+        assert "stars" not in text.lower()
+
+    def test_format_structure(self, skill):
+        text = build_embedding_text(skill)
+        assert text.startswith(skill["name"] + ".")
+        assert "Categories:" in text
+
+    def test_raises_on_missing_name(self, skill):
+        bad = {**skill, "name": ""}
+        with pytest.raises(ValueError):
+            build_embedding_text(bad)
+
+    def test_raises_on_missing_description(self, skill):
+        bad = {**skill, "description": ""}
+        with pytest.raises(ValueError):
+            build_embedding_text(bad)
+
+    def test_under_512_tokens_for_typical_skill(self, skill):
+        text = build_embedding_text(skill)
+        # Rough token estimate: 4 chars per token
+        assert len(text) / 4 < 512
+
+
+# ---------------------------------------------------------------------------
+# merge_records
+# ---------------------------------------------------------------------------
+
+class TestMergeRecords:
+    def test_raises_on_empty_list(self):
+        with pytest.raises(ValueError):
+            merge_records([])
+
+    def test_single_record_returns_self(self):
+        record = {
+            "repo_url": "https://github.com/user/skill",
+            "name": "skill",
+            "description": "A skill.",
+            "source": "skillsmp",
+            "raw_metadata": {"stars": 5},
+        }
+        merged = merge_records([record])
+        assert merged["name"] == "skill"
+        assert "skillsmp" in merged["source"]
+
+    def test_description_from_skillhub_beats_skillsmp(self, raw_records_with_overlap):
+        # skillhub record has the most detailed description
+        merged = merge_records(raw_records_with_overlap)
+        # Should contain content from the skillhub record (longest/most authoritative)
+        assert merged["description"]
+
+    def test_stars_taken_from_skillsmp(self, raw_records_with_overlap):
+        merged = merge_records(raw_records_with_overlap)
+        assert merged["quality"]["stars"] == 142
+
+    def test_skillhub_rank_and_score_preserved(self, raw_records_with_overlap):
+        merged = merge_records(raw_records_with_overlap)
+        assert merged["quality"]["skillhub_rank"] == "A"
+        assert merged["quality"]["skillhub_score"] == pytest.approx(8.4)
+
+    def test_categories_are_union(self, raw_records_with_overlap):
+        merged = merge_records(raw_records_with_overlap)
+        cats = set(merged["categories"])
+        assert "kubernetes" in cats
+        assert "devops" in cats
+
+    def test_source_list_contains_all_sources(self, raw_records_with_overlap):
+        merged = merge_records(raw_records_with_overlap)
+        sources = set(merged["source"])
+        assert "skillsmp" in sources
+        assert "clawhub" in sources
+        assert "skillhub" in sources
+
+    def test_repo_url_is_canonical(self, raw_records_with_overlap):
+        merged = merge_records(raw_records_with_overlap)
+        url = merged["repo_url"]
+        assert not url.endswith(".git")
+        assert not url.endswith("/")
+        assert url == url.lower()
+
+
+# ---------------------------------------------------------------------------
+# build_install_cmds
+# ---------------------------------------------------------------------------
+
+class TestBuildInstallCmds:
+    def test_skillsmp_source_generates_claude_code_cmd(self):
+        merged = {"name": "my-skill", "source": ["skillsmp"], "repo_url": "https://github.com/user/my-skill"}
+        cmds = build_install_cmds(merged)
+        assert "claude_code" in cmds
+        assert "my-skill" in cmds["claude_code"]
+
+    def test_clawhub_source_generates_openclaw_cmd(self):
+        merged = {"name": "my-skill", "source": ["clawhub"], "repo_url": "https://github.com/user/my-skill"}
+        cmds = build_install_cmds(merged)
+        assert "openclaw" in cmds
+        assert "clawhub install" in cmds["openclaw"]
+
+    def test_marketplace_source_generates_claude_code_cmd(self):
+        merged = {"name": "my-skill", "source": ["marketplace"], "repo_url": "https://github.com/user/my-skill"}
+        cmds = build_install_cmds(merged)
+        assert "claude_code" in cmds
+
+    def test_multiple_sources_generate_multiple_cmds(self):
+        merged = {"name": "my-skill", "source": ["skillsmp", "clawhub"], "repo_url": "https://github.com/user/my-skill"}
+        cmds = build_install_cmds(merged)
+        assert "claude_code" in cmds
+        assert "openclaw" in cmds
+
+
+# ---------------------------------------------------------------------------
+# passes_quality_filter
+# ---------------------------------------------------------------------------
+
+class TestPassesQualityFilter:
+    def test_passes_with_stars_gte_10(self):
+        skill = {"description": "desc", "source": ["skillsmp"], "quality": {"stars": 10, "skillhub_rank": None}}
+        assert passes_quality_filter(skill) is True
+
+    def test_passes_with_many_stars(self):
+        skill = {"description": "desc", "source": ["skillsmp"], "quality": {"stars": 100, "skillhub_rank": None}}
+        assert passes_quality_filter(skill) is True
+
+    def test_fails_zero_stars_any_source(self):
+        for source in ["skillsmp", "clawhub", "skillhub", "marketplace"]:
+            skill = {"description": "desc", "source": [source], "quality": {"stars": 0, "skillhub_rank": "S"}}
+            assert passes_quality_filter(skill) is False, f"Expected fail for source={source} with 0 stars"
+
+    def test_fails_rank_b_with_zero_stars_not_curated(self):
+        skill = {"description": "desc", "source": ["skillsmp"], "quality": {"stars": 0, "skillhub_rank": "B"}}
+        assert passes_quality_filter(skill) is False
+
+    def test_fails_no_description(self):
+        skill = {"description": "", "source": ["skillsmp"], "quality": {"stars": 100, "skillhub_rank": "S"}}
+        assert passes_quality_filter(skill) is False
+
+    def test_fails_missing_description_key(self):
+        skill = {"source": ["skillsmp"], "quality": {"stars": 100, "skillhub_rank": "S"}}
+        assert passes_quality_filter(skill) is False
+
+    def test_fails_zero_stars_no_rank(self, skill_low_quality):
+        assert passes_quality_filter(skill_low_quality) is False
+
+    def test_fails_curated_zero_stars(self, skill_curated):
+        """Curated source alone is not sufficient; stars >= 10 is always required."""
+        assert passes_quality_filter(skill_curated) is False
+
+    def test_star_count_1_fails(self):
+        skill = {"description": "desc", "source": ["skillsmp"], "quality": {"stars": 1, "skillhub_rank": None}}
+        assert passes_quality_filter(skill) is False
+
+    def test_star_count_9_fails(self):
+        skill = {"description": "desc", "source": ["skillsmp"], "quality": {"stars": 9, "skillhub_rank": None}}
+        assert passes_quality_filter(skill) is False
+
+    def test_star_count_10_passes(self):
+        skill = {"description": "desc", "source": ["skillsmp"], "quality": {"stars": 10, "skillhub_rank": None}}
+        assert passes_quality_filter(skill) is True
+
+
+# ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# normalize (end-to-end)
+# ---------------------------------------------------------------------------
+
+class TestNormalize:
+    def test_deduplicates_overlapping_records(self, tmp_raw_dir, tmp_path):
+        output = str(tmp_path / "out.jsonl")
+        normalize([str(p) for p in tmp_raw_dir.glob("*.jsonl")], output)
+        # kubernetes-deployer appears in skillsmp + clawhub + skillhub → 1 merged record
+        records = [json.loads(line) for line in open(output)]  # noqa: SIM115
+        k8s = [r for r in records if r["name"] == "kubernetes-deployer"]
+        assert len(k8s) == 1
+
+    def test_output_file_created(self, tmp_raw_dir, tmp_path):
+        output = str(tmp_path / "out.jsonl")
+        normalize([str(p) for p in tmp_raw_dir.glob("*.jsonl")], output)
+        assert os.path.exists(output)
+
+    def test_all_records_have_id(self, tmp_raw_dir, tmp_path):
+        output = str(tmp_path / "out.jsonl")
+        normalize([str(p) for p in tmp_raw_dir.glob("*.jsonl")], output)
+        for line in open(output):
+            record = json.loads(line)
+            assert "id" in record
+            assert len(record["id"]) == 64
+
+    def test_all_records_have_embedding_text(self, tmp_raw_dir, tmp_path):
+        output = str(tmp_path / "out.jsonl")
+        normalize([str(p) for p in tmp_raw_dir.glob("*.jsonl")], output)
+        for line in open(output):
+            record = json.loads(line)
+            assert "embedding_text" in record
+            assert record["embedding_text"]
+
+    def test_drops_no_description_records(self, tmp_raw_dir, tmp_path):
+        output = str(tmp_path / "out.jsonl")
+        normalize([str(p) for p in tmp_raw_dir.glob("*.jsonl")], output)
+        records = [json.loads(line) for line in open(output)]  # noqa: SIM115
+        bad = [r for r in records if r["name"] == "no-description-skill"]
+        assert len(bad) == 0
+
+    def test_returns_count_of_written_records(self, tmp_raw_dir, tmp_path):
+        output = str(tmp_path / "out.jsonl")
+        count = normalize([str(p) for p in tmp_raw_dir.glob("*.jsonl")], output)
+        actual = sum(1 for _ in open(output))
+        assert count == actual
+
+    def test_quality_gate_raises_when_below_threshold(self, tmp_raw_dir, tmp_path):
+        output = str(tmp_path / "out.jsonl")
+        with pytest.raises(QualityGateError):
+            normalize([str(p) for p in tmp_raw_dir.glob("*.jsonl")], output, min_skills=99999)
+
+    def test_skips_missing_input_file(self, tmp_raw_dir, tmp_path):
+        """A missing input (e.g. a crawler killed before its single end-of-run
+        write) is skipped; the present sources still produce a release."""
+        output = str(tmp_path / "out.jsonl")
+        paths = [str(p) for p in tmp_raw_dir.glob("*.jsonl")]
+        paths.append(str(tmp_path / "topic.jsonl"))  # never written
+        count = normalize(paths, output)
+        assert count > 0
+        assert os.path.exists(output)
+
+    def test_all_inputs_missing_fails_quality_gate(self, tmp_path):
+        """If every input is missing there is no data, so the quality gate —
+        not a FileNotFoundError — is what stops the release."""
+        with pytest.raises(QualityGateError):
+            normalize([str(tmp_path / "nonexistent.jsonl")], str(tmp_path / "out.jsonl"))
+
+    def test_records_have_canonical_repo_urls(self, tmp_raw_dir, tmp_path):
+        output = str(tmp_path / "out.jsonl")
+        normalize([str(p) for p in tmp_raw_dir.glob("*.jsonl")], output)
+        for line in open(output):
+            record = json.loads(line)
+            url = record["repo_url"]
+            assert not url.endswith(".git")
+            assert not url.endswith("/")
+            assert url == url.lower()
+
+    def test_is_official_not_in_output_metadata(self, tmp_raw_dir, tmp_path):
+        """is_official is a pipeline-internal flag and must be stripped from output records."""
+        output = str(tmp_path / "out.jsonl")
+        normalize([str(p) for p in tmp_raw_dir.glob("*.jsonl")], output)
+        for line in open(output):
+            record = json.loads(line)
+            assert "is_official" not in record, (
+                f"is_official should be stripped from output but found in: {record.get('name')}"
+            )
+
+
+# ---------------------------------------------------------------------------
+# Tombstone filtering
+# ---------------------------------------------------------------------------
+
+class TestTombstoneFiltering:
+    """Test that tombstone records are skipped during normalization."""
+
+    def test_tombstone_records_are_skipped(self, tmp_path):
+        """Records with tombstone=True should be excluded from normalized output."""
+        raw = tmp_path / "raw.jsonl"
+        records = [
+            {
+                "repo_url": "https://github.com/user/real-skill",
+                "name": "real-skill",
+                "description": "A real agent skill with enough content",
+                "source": "skillsmp",
+                "raw_metadata": {
+                    "stars": 50,
+                    "pushed_at": "2026-01-01",
+                    "skill_md_url": "https://github.com/user/real-skill/blob/main/SKILL.md",
+                    "platforms": ["claude_code"],
+                },
+            },
+            {
+                "repo_url": "https://github.com/user/deleted-skill",
+                "skill_md_url": "https://github.com/user/deleted-skill/blob/main/SKILL.md",
+                "source": "skillsmp",
+                "tombstone": True,
+                "deleted_at": "2026-03-01T00:00:00Z",
+            },
+        ]
+        with raw.open("w") as f:
+            for rec in records:
+                f.write(json.dumps(rec) + "\n")
+
+        output = str(tmp_path / "out.jsonl")
+        normalize([str(raw)], output, min_skills=0)
+
+        out_records = [json.loads(line) for line in open(output) if line.strip()]  # noqa: SIM115
+        repo_urls = [r["repo_url"] for r in out_records]
+        assert "https://github.com/user/deleted-skill" not in repo_urls
+        assert "https://github.com/user/real-skill" in repo_urls
+
+
+class TestMalformedLineTolerance:
+    """A truncated/malformed JSONL line must not abort the whole run.
+
+    In CI each crawler is wrapped in `timeout`; when it is SIGTERM'd mid-write
+    it leaves a partial final line in its raw file. The workflow is designed to
+    "proceed with whatever data was written" and let the >=8,000 quality gate
+    catch wholesale failure -- so normalize() must skip a bad line, not raise.
+    """
+
+    @staticmethod
+    def _good(i):
+        return {
+            "repo_url": f"https://github.com/user/skill-{i}",
+            "name": f"skill-{i}",
+            "description": "A real agent skill with enough content",
+            "source": "skillsmp",
+            "raw_metadata": {
+                "stars": 50,
+                "skill_md_url": f"https://github.com/user/skill-{i}/blob/main/SKILL.md",
+            },
+        }
+
+    def test_truncated_trailing_line_is_skipped(self, tmp_path):
+        """A partial last line (crawler killed mid-write) is skipped, good records survive."""
+        raw = tmp_path / "raw.jsonl"
+        with raw.open("w") as f:
+            for i in range(30):
+                f.write(json.dumps(self._good(i)) + "\n")
+            # Crawler SIGTERM'd mid-write: a truncated JSON object, no newline.
+            f.write('{"repo_url": "https://github.com/user/half", "name": "ha')
+
+        output = str(tmp_path / "out.jsonl")
+        # Must NOT raise on the truncated line.
+        count = normalize([str(raw)], output, min_skills=1)
+
+        out_records = [json.loads(line) for line in open(output) if line.strip()]  # noqa: SIM115
+        names = {r["name"] for r in out_records}
+        assert "skill-0" in names and "skill-29" in names
+        assert count == 30
+
+    def test_malformed_line_logs_warning(self, tmp_path, caplog):
+        """Skipped malformed lines are reported as warnings, not silently dropped."""
+        raw = tmp_path / "raw.jsonl"
+        with raw.open("w") as f:
+            for i in range(30):
+                f.write(json.dumps(self._good(i)) + "\n")
+            f.write("{not valid json}\n")
+
+        output = str(tmp_path / "out.jsonl")
+        with caplog.at_level(logging.WARNING):
+            normalize([str(raw)], output, min_skills=1)
+
+        assert any("malformed" in r.message.lower() for r in caplog.records)
+
+    def test_mostly_corrupt_file_raises(self, tmp_path):
+        """A file that is largely unparseable signals real corruption, not a clipped tail."""
+        raw = tmp_path / "raw.jsonl"
+        with raw.open("w") as f:
+            f.write(json.dumps(self._good(0)) + "\n")
+            for _ in range(20):
+                f.write("{garbage not json}\n")
+
+        with pytest.raises(ValueError, match="corrupt"):
+            normalize([str(raw)], str(tmp_path / "out.jsonl"), min_skills=1)
+
+    def test_small_file_with_truncated_tail_does_not_raise(self, tmp_path):
+        """A short crawl (killed early) with a single truncated tail line is a
+        clipped tail, not corruption — the absolute floor keeps it tolerated
+        even though 1/6 lines exceeds the 10% ratio."""
+        raw = tmp_path / "raw.jsonl"
+        with raw.open("w") as f:
+            for i in range(5):
+                f.write(json.dumps(self._good(i)) + "\n")
+            f.write('{"repo_url": "https://github.com/user/half", "name": "ha')
+
+        count = normalize([str(raw)], str(tmp_path / "out.jsonl"), min_skills=1)
+        assert count == 5
+
+
+# ---------------------------------------------------------------------------
+# Quality stats logging
+# ---------------------------------------------------------------------------
+
+def _make_raw_record(repo_url, description="Good skill.", stars=50, source="skillsmp"):
+    return {
+        "repo_url": repo_url,
+        "name": repo_url.split("/")[-1],
+        "description": description,
+        "source": source,
+        "raw_metadata": {"stars": stars},
+    }
+
+
+class TestNormalizeQualityStats:
+    """Verify that normalize() logs quality stats to the INFO logger."""
+
+    def _run_normalize(self, tmp_path, records, min_stars=10):
+        raw = tmp_path / "raw.jsonl"
+        with raw.open("w") as f:
+            for r in records:
+                f.write(json.dumps(r) + "\n")
+        output = str(tmp_path / "out.jsonl")
+        with self._capture_logs("pipeline.normalize") as log_records:
+            normalize([str(raw)], output, min_stars=min_stars, min_skills=0)
+        messages = [r.getMessage() for r in log_records]
+        return messages
+
+    @staticmethod
+    def _capture_logs(logger_name: str):
+        """Context manager that collects log records from a named logger."""
+        import contextlib
+
+        @contextlib.contextmanager
+        def _ctx():
+            records: list[logging.LogRecord] = []
+
+            class _Sink(logging.Handler):
+                def emit(self, record):
+                    records.append(record)
+
+            handler = _Sink(level=logging.DEBUG)
+            lgr = logging.getLogger(logger_name)
+            old_level = lgr.level
+            lgr.setLevel(logging.DEBUG)
+            lgr.addHandler(handler)
+            try:
+                yield records
+            finally:
+                lgr.removeHandler(handler)
+                lgr.setLevel(old_level)
+
+        return _ctx()
+
+    def test_logs_raw_record_count(self, tmp_path):
+        records = [
+            _make_raw_record("https://github.com/u/a"),
+            _make_raw_record("https://github.com/u/b"),
+        ]
+        msgs = self._run_normalize(tmp_path, records)
+        raw_line = next(m for m in msgs if "Raw records loaded" in m)
+        assert "2" in raw_line
+
+    def test_logs_dedup_line(self, tmp_path):
+        # Two records with the same repo_url → 1 unique group
+        records = [
+            _make_raw_record("https://github.com/u/shared"),
+            _make_raw_record("https://github.com/u/shared"),
+        ]
+        msgs = self._run_normalize(tmp_path, records)
+        dedup_line = next(m for m in msgs if "Dedup:" in m)
+        assert "2 raw" in dedup_line
+        assert "1 unique" in dedup_line
+
+    def test_logs_dropped_no_description(self, tmp_path):
+        records = [
+            _make_raw_record("https://github.com/u/good"),
+            _make_raw_record("https://github.com/u/nodesc", description=""),
+        ]
+        msgs = self._run_normalize(tmp_path, records)
+        dropped_line = next(m for m in msgs if "no description" in m)
+        assert "1" in dropped_line
+
+    def test_logs_dropped_zero_stars(self, tmp_path):
+        records = [
+            _make_raw_record("https://github.com/u/good"),
+            _make_raw_record("https://github.com/u/zerostars", stars=0),
+        ]
+        msgs = self._run_normalize(tmp_path, records)
+        zero_line = next(m for m in msgs if "0-star" in m)
+        assert "1" in zero_line
+
+    def test_logs_dropped_low_stars(self, tmp_path):
+        records = [
+            _make_raw_record("https://github.com/u/good"),
+            _make_raw_record("https://github.com/u/lowstars", stars=5),
+        ]
+        msgs = self._run_normalize(tmp_path, records, min_stars=10)
+        low_line = next(m for m in msgs if "1-9" in m)
+        assert "1" in low_line
+
+    def test_logs_passed_count(self, tmp_path):
+        records = [
+            _make_raw_record("https://github.com/u/a"),
+            _make_raw_record("https://github.com/u/b"),
+        ]
+        msgs = self._run_normalize(tmp_path, records)
+        passed_line = next(m for m in msgs if "Passed quality filter" in m)
+        assert "2" in passed_line

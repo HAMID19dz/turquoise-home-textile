@@ -1,0 +1,37 @@
+import { chromium } from 'playwright-core';
+import path from 'path';
+import sharp from 'sharp';
+
+const CHROME_PATH = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
+const M4_DIR = 'C:/Users/ARES/.gemini/antigravity/brain/6ec95a54-7d4a-444c-9476-3d57a646c1e2/screenshots/m4';
+
+async function testMobileClean() {
+  const browser = await chromium.launch({
+    executablePath: CHROME_PATH,
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
+
+  const page = await browser.newPage({ viewport: { width: 375, height: 812 } });
+  await page.goto('http://localhost:4173/ar#customizer', { waitUntil: 'networkidle' });
+  await page.waitForTimeout(2000);
+
+  const customizer = await page.$('#customizer');
+  if (customizer) {
+    await customizer.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(1500);
+  }
+
+  const outPath = path.join(M4_DIR, 'ar_customizer_mobile_375.png');
+  await page.screenshot({ path: outPath, fullPage: false });
+  console.log('Saved mobile screenshot to', outPath);
+
+  const stats = await sharp(outPath).stats();
+  console.log('Mobile stats channel 0 stdev:', stats.channels[0].stdev);
+  const meta = await sharp(outPath).metadata();
+  console.log('Image size in bytes:', meta.size);
+
+  await browser.close();
+}
+
+testMobileClean().catch(console.error);

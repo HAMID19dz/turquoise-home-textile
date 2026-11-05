@@ -1,0 +1,410 @@
+{
+  "leather-armchair": {
+    "id": "leather-armchair",
+    "originalName": "WhatsApp Image 2026-11-03 at 22.43.00.jpeg",
+    "isSecondary": false,
+    "width": 574,
+    "height": 1020,
+    "aspectRatio": 0.563,
+    "focal": {
+      "x": 0.5,
+      "y": 0.6
+    },
+    "lqip": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAABwAwCdASoLABQAPzmIu1QvKSYjMAgB4CcJZQC/OCFmBRXZisAA/FMW9sFP1Hgqwa6hyQ/LcAAAAA==",
+    "palette": [
+      "#807060",
+      "#706050",
+      "#707060",
+      "#908070",
+      "#606050"
+    ],
+    "defaultColor": "#807060",
+    "accentColor": "#706050",
+    "alt": {
+      "ar": "كرسي بذراعين من الجلد الرمادي الفاخر مع تنجيد غائر وأرجل معدنية",
+      "fr": "Fauteuil en cuir gris clair avec capitonnage central et pieds en métal foncé",
+      "en": "Luxury light grey leather armchair with tufted backrest and dark metal legs"
+    },
+    "src": "/assets/products/leather-armchair-960w.webp",
+    "srcJpg": "/assets/products/leather-armchair-960w.jpg",
+    "srcset": {
+      "avif": "/assets/products/leather-armchair-480w.avif 480w, /assets/products/leather-armchair-960w.avif 960w, /assets/products/leather-armchair-1600w.avif 1600w",
+      "webp": "/assets/products/leather-armchair-480w.webp 480w, /assets/products/leather-armchair-960w.webp 960w, /assets/products/leather-armchair-1600w.webp 1600w",
+      "jpg": "/assets/products/leather-armchair-480w.jpg 480w, /assets/products/leather-armchair-960w.jpg 960w, /assets/products/leather-armchair-1600w.jpg 1600w"
+    }
+  },
+  "leather-sofa": {
+    "id": "leather-sofa",
+    "originalName": "WhatsApp Image 2026-11-03 at 22.43.01.jpeg",
+    "isSecondary": false,
+    "width": 1020,
+    "height": 574,
+    "aspectRatio": 1.777,
+    "focal": {
+      "x": 0.5,
+      "y": 0.55
+    },
+    "lqip": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAAAwAwCdASoUAAsAPzmEuVOvKKWisAgB4CcJZQAACCRjXFwAANZIvKftQ6/ZjersOM+ahdjDcAAAAA==",
+    "palette": [
+      "#a09080",
+      "#b0a090",
+      "#c0b0a0",
+      "#908070",
+      "#d0c0b0"
+    ],
+    "defaultColor": "#a09080",
+    "accentColor": "#b0a090",
+    "alt": {
+      "ar": "أريكة جلدية رمادية تتسع لشخصين أو ثلاثة مع وسائد هندسية",
+      "fr": "Canapé 2-3 places en cuir gris clair assorti avec deux coussins géométriques",
+      "en": "Matching light grey leather 2-3 seat sofa with geometric cushions"
+    },
+    "src": "/assets/products/leather-sofa-960w.webp",
+    "srcJpg": "/assets/products/leather-sofa-960w.jpg",
+    "srcset": {
+      "avif": "/assets/products/leather-sofa-480w.avif 480w, /assets/products/leather-sofa-960w.avif 960w, /assets/products/leather-sofa-1600w.avif 1600w",
+      "webp": "/assets/products/leather-sofa-480w.webp 480w, /assets/products/leather-sofa-960w.webp 960w, /assets/products/leather-sofa-1600w.webp 1600w",
+      "jpg": "/assets/products/leather-sofa-480w.jpg 480w, /assets/products/leather-sofa-960w.jpg 960w, /assets/products/leather-sofa-1600w.jpg 1600w"
+    }
+  },
+  "boucle-sofa": {
+    "id": "boucle-sofa",
+    "originalName": "WhatsApp Image 2026-12221-03 at 22.43.02.jpeg",
+    "isSecondary": false,
+    "width": 1020,
+    "height": 574,
+    "aspectRatio": 1.777,
+    "focal": {
+      "x": 0.5,
+      "y": 0.55
+    },
+    "lqip": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAAAwAwCdASoUAAsAPzmIulQvKSWjMAgB4CcJYwAAV9YiiIzwAL55wZSJbf3J+l6JuYCza/ybQAA=",
+    "palette": [
+      "#c0b090",
+      "#d0c090",
+      "#b0a080",
+      "#d0c0a0",
+      "#e0d0b0"
+    ],
+    "defaultColor": "#c0b090",
+    "accentColor": "#d0c090",
+    "alt": {
+      "ar": "أريكة بوكليه عاجية منحنية مع قاعدة خشبية طبيعية وثلاث وسائد",
+      "fr": "Canapé courbé en tissu bouclé ivoire avec base en bois chaleureux et 3 coussins",
+      "en": "Curved ivory bouclé sofa with natural warm wood base and three cushions"
+    },
+    "src": "/assets/products/boucle-sofa-960w.webp",
+    "srcJpg": "/assets/products/boucle-sofa-960w.jpg",
+    "srcset": {
+      "avif": "/assets/products/boucle-sofa-480w.avif 480w, /assets/products/boucle-sofa-960w.avif 960w, /assets/products/boucle-sofa-1600w.avif 1600w",
+      "webp": "/assets/products/boucle-sofa-480w.webp 480w, /assets/products/boucle-sofa-960w.webp 960w, /assets/products/boucle-sofa-1600w.webp 1600w",
+      "jpg": "/assets/products/boucle-sofa-480w.jpg 480w, /assets/products/boucle-sofa-960w.jpg 960w, /assets/products/boucle-sofa-1600w.jpg 1600w"
+    }
+  },
+  "velvet-accent-chair": {
+    "id": "velvet-accent-chair",
+    "originalName": "WhatsApp Image 2026-1j1-03 at 22.43.02.jpeg",
+    "isSecondary": false,
+    "width": 574,
+    "height": 1020,
+    "aspectRatio": 0.563,
+    "focal": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "lqip": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAABwAwCdASoLABQAPzmKu1SvKaYjMAgB4CcJZQC06AMWRp8EsAAA/ddvgzawEp9e9BHKnoO5qbjfhIcAAAA=",
+    "palette": [
+      "#807060",
+      "#908070",
+      "#706050",
+      "#808070",
+      "#606040"
+    ],
+    "defaultColor": "#807060",
+    "accentColor": "#908070",
+    "alt": {
+      "ar": "كرسي مفرد فاخر بقماش بيج محكم مع خط أسود رأسي على الذراعين وأرجل فضية",
+      "fr": "Fauteuil d’appoint en tissu texturé beige-gris avec bande noire verticale et pieds argentés",
+      "en": "Luxury single armchair in textured beige-grey fabric with black vertical arm stripe and silver legs"
+    },
+    "src": "/assets/products/velvet-accent-chair-960w.webp",
+    "srcJpg": "/assets/products/velvet-accent-chair-960w.jpg",
+    "srcset": {
+      "avif": "/assets/products/velvet-accent-chair-480w.avif 480w, /assets/products/velvet-accent-chair-960w.avif 960w, /assets/products/velvet-accent-chair-1600w.avif 1600w",
+      "webp": "/assets/products/velvet-accent-chair-480w.webp 480w, /assets/products/velvet-accent-chair-960w.webp 960w, /assets/products/velvet-accent-chair-1600w.webp 1600w",
+      "jpg": "/assets/products/velvet-accent-chair-480w.jpg 480w, /assets/products/velvet-accent-chair-960w.jpg 960w, /assets/products/velvet-accent-chair-1600w.jpg 1600w"
+    }
+  },
+  "oval-dining-set": {
+    "id": "oval-dining-set",
+    "originalName": "555.jpeg",
+    "isSecondary": false,
+    "width": 1020,
+    "height": 574,
+    "aspectRatio": 1.777,
+    "focal": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "lqip": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAAAwAwCdASoUAAsAPzmKu1SvKaYjMAgB4CcJZQAAQQJA9xCAAP65xtQH6Yqx4ejx1x4weRGOL2iUAAAA",
+    "palette": [
+      "#505040",
+      "#707060",
+      "#402010",
+      "#201010",
+      "#606050"
+    ],
+    "defaultColor": "#505040",
+    "accentColor": "#707060",
+    "alt": {
+      "ar": "طاولة طعام بيضاوية من الخشب المصقول مع 6 كراسي وحامل شموع ذهبي",
+      "fr": "Ensemble table à manger ovale en bois verni, 6 chaises et bougeoir doré",
+      "en": "Oval polished warm wood dining table with 6 curved-back chairs and gold candle holder"
+    },
+    "src": "/assets/products/oval-dining-set-960w.webp",
+    "srcJpg": "/assets/products/oval-dining-set-960w.jpg",
+    "srcset": {
+      "avif": "/assets/products/oval-dining-set-480w.avif 480w, /assets/products/oval-dining-set-960w.avif 960w, /assets/products/oval-dining-set-1600w.avif 1600w",
+      "webp": "/assets/products/oval-dining-set-480w.webp 480w, /assets/products/oval-dining-set-960w.webp 960w, /assets/products/oval-dining-set-1600w.webp 1600w",
+      "jpg": "/assets/products/oval-dining-set-480w.jpg 480w, /assets/products/oval-dining-set-960w.jpg 960w, /assets/products/oval-dining-set-1600w.jpg 1600w"
+    }
+  },
+  "coffee-table": {
+    "id": "coffee-table",
+    "originalName": "WhatsApp Image 2026-11-03 at 22.43.04442.jpeg",
+    "isSecondary": false,
+    "width": 1020,
+    "height": 574,
+    "aspectRatio": 1.777,
+    "focal": {
+      "x": 0.5,
+      "y": 0.6
+    },
+    "lqip": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAACwAwCdASoUAAsAPzmGulQvKSWjMAgB4CcJYwCsACEd38boujOSgAD+VqpJVDbEb6ZxiIwl31u1kE1usvGwAA==",
+    "palette": [
+      "#a0a090",
+      "#201000",
+      "#402010",
+      "#e0e0d0",
+      "#805020"
+    ],
+    "defaultColor": "#a0a090",
+    "accentColor": "#201000",
+    "alt": {
+      "ar": "طاولة قهوة مستطيلة من الخشب الطبيعي مع رف سفلي مفتوح",
+      "fr": "Table basse rectangulaire en bois naturel avec étagère inférieure ouverte",
+      "en": "Rectangular natural wood coffee table with lower open shelf"
+    },
+    "src": "/assets/products/coffee-table-960w.webp",
+    "srcJpg": "/assets/products/coffee-table-960w.jpg",
+    "srcset": {
+      "avif": "/assets/products/coffee-table-480w.avif 480w, /assets/products/coffee-table-960w.avif 960w, /assets/products/coffee-table-1600w.avif 1600w",
+      "webp": "/assets/products/coffee-table-480w.webp 480w, /assets/products/coffee-table-960w.webp 960w, /assets/products/coffee-table-1600w.webp 1600w",
+      "jpg": "/assets/products/coffee-table-480w.jpg 480w, /assets/products/coffee-table-960w.jpg 960w, /assets/products/coffee-table-1600w.jpg 1600w"
+    }
+  },
+  "side-table": {
+    "id": "side-table",
+    "originalName": "WhatsApp Image 2026-11-03 at 22.43.44803.jpeg",
+    "isSecondary": false,
+    "width": 574,
+    "height": 1020,
+    "aspectRatio": 0.563,
+    "focal": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "lqip": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADwAgCdASoLABQAPzmEuVOvKKWisAgB4CcJYwC7AANEAAD3BUt8dZ+cuT9Jj/L3b5pWdG1eOgAAAA==",
+    "palette": [
+      "#a0a080",
+      "#c0c0a0",
+      "#c0b090",
+      "#d0c0a0",
+      "#b0a080"
+    ],
+    "defaultColor": "#a0a080",
+    "accentColor": "#c0c0a0",
+    "alt": {
+      "ar": "طاولة جانبية كلاسيكية مستديرة من الخشب مع قاعدة ثلاثية وزخارف ذهبية",
+      "fr": "Guéridon classique rond en bois verni avec piétement tripode et accents dorés",
+      "en": "Classic round wood pedestal side table with tripod curved legs and gold accents"
+    },
+    "src": "/assets/products/side-table-960w.webp",
+    "srcJpg": "/assets/products/side-table-960w.jpg",
+    "srcset": {
+      "avif": "/assets/products/side-table-480w.avif 480w, /assets/products/side-table-960w.avif 960w, /assets/products/side-table-1600w.avif 1600w",
+      "webp": "/assets/products/side-table-480w.webp 480w, /assets/products/side-table-960w.webp 960w, /assets/products/side-table-1600w.webp 1600w",
+      "jpg": "/assets/products/side-table-480w.jpg 480w, /assets/products/side-table-960w.jpg 960w, /assets/products/side-table-1600w.jpg 1600w"
+    }
+  },
+  "curtain-cream": {
+    "id": "curtain-cream",
+    "originalName": "WhatsApp Image 2026-11-03 at 2م2.43.01.jpeg",
+    "isSecondary": false,
+    "width": 574,
+    "height": 1020,
+    "aspectRatio": 0.563,
+    "focal": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "lqip": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADwAgCdASoLABQAPzmEuVOvKKWisAgB4CcJZQC7AAVxwAD+dpxKsbktrQ8vLG2fBHfDrIlycqY6HgAA",
+    "palette": [
+      "#a09070",
+      "#b0a080",
+      "#a09080",
+      "#c0b090",
+      "#908060"
+    ],
+    "defaultColor": "#a09070",
+    "accentColor": "#b0a080",
+    "alt": {
+      "ar": "ستائر بليسيه عاجية فاخرة مع شريط تطريز ذهبي عريض وأربطة لؤلؤية",
+      "fr": "Rideaux plissés ivoire avec large bande de broderie dorée et embrasses de perles",
+      "en": "Pleated cream luxury curtains with wide gold embroidery band and pearl tiebacks"
+    },
+    "src": "/assets/products/curtain-cream-960w.webp",
+    "srcJpg": "/assets/products/curtain-cream-960w.jpg",
+    "srcset": {
+      "avif": "/assets/products/curtain-cream-480w.avif 480w, /assets/products/curtain-cream-960w.avif 960w, /assets/products/curtain-cream-1600w.avif 1600w",
+      "webp": "/assets/products/curtain-cream-480w.webp 480w, /assets/products/curtain-cream-960w.webp 960w, /assets/products/curtain-cream-1600w.webp 1600w",
+      "jpg": "/assets/products/curtain-cream-480w.jpg 480w, /assets/products/curtain-cream-960w.jpg 960w, /assets/products/curtain-cream-1600w.jpg 1600w"
+    }
+  },
+  "curtain-taupe": {
+    "id": "curtain-taupe",
+    "originalName": "WhatsApp Image 2026-11ب-03 at 22.43.01.jpeg",
+    "isSecondary": false,
+    "width": 574,
+    "height": 1020,
+    "aspectRatio": 0.563,
+    "focal": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "lqip": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAAAQAwCdASoLABQAPzmGuVOvKSWisAgB4CcJYwC/OCHKizAA/naB3mjMfPKz4qjLbFE8M5o4AAA=",
+    "palette": [
+      "#706050",
+      "#c0b0a0",
+      "#c0b090",
+      "#605040",
+      "#b0a080"
+    ],
+    "defaultColor": "#706050",
+    "accentColor": "#c0b0a0",
+    "alt": {
+      "ar": "ستائر ثقيلة بنقش هندسي باللون الرمادي التوب مع شيفون داخلي أبيض وأربطة لؤلؤية",
+      "fr": "Rideaux épais à motifs géométriques gris-taupe avec voilage blanc et embrasses perles",
+      "en": "Heavy geometric pattern grey-taupe curtains with inner white sheer and pearl tiebacks"
+    },
+    "src": "/assets/products/curtain-taupe-960w.webp",
+    "srcJpg": "/assets/products/curtain-taupe-960w.jpg",
+    "srcset": {
+      "avif": "/assets/products/curtain-taupe-480w.avif 480w, /assets/products/curtain-taupe-960w.avif 960w, /assets/products/curtain-taupe-1600w.avif 1600w",
+      "webp": "/assets/products/curtain-taupe-480w.webp 480w, /assets/products/curtain-taupe-960w.webp 960w, /assets/products/curtain-taupe-1600w.webp 1600w",
+      "jpg": "/assets/products/curtain-taupe-480w.jpg 480w, /assets/products/curtain-taupe-960w.jpg 960w, /assets/products/curtain-taupe-1600w.jpg 1600w"
+    }
+  },
+  "oval-dining-set-showroom": {
+    "id": "oval-dining-set-showroom",
+    "originalName": "WhatsApp Image 2026-11-03 at 22.4443.03.jpeg",
+    "isSecondary": true,
+    "width": 574,
+    "height": 1020,
+    "aspectRatio": 0.563,
+    "focal": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "lqip": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAABQAwCdASoLABQAPzmIvlSvKSajMAgB4CcJQBWAA07qPqvMAADJ5NBsoAfDF/Xbl/9xIQW7FE+cM64xAAA=",
+    "palette": [
+      "#a0a090",
+      "#909080",
+      "#603010",
+      "#803000",
+      "#302010"
+    ],
+    "defaultColor": "#a0a090",
+    "accentColor": "#909080",
+    "alt": {
+      "ar": "منظر عام لطقم السفرة البيضاوي داخل صالة عرض تركواز",
+      "fr": "Vue d’ensemble de la table ovale dans la salle d’exposition Turquoise",
+      "en": "Showroom perspective of the oval dining set"
+    },
+    "src": "/assets/products/oval-dining-set-showroom-960w.webp",
+    "srcJpg": "/assets/products/oval-dining-set-showroom-960w.jpg",
+    "srcset": {
+      "avif": "/assets/products/oval-dining-set-showroom-480w.avif 480w, /assets/products/oval-dining-set-showroom-960w.avif 960w, /assets/products/oval-dining-set-showroom-1600w.avif 1600w",
+      "webp": "/assets/products/oval-dining-set-showroom-480w.webp 480w, /assets/products/oval-dining-set-showroom-960w.webp 960w, /assets/products/oval-dining-set-showroom-1600w.webp 1600w",
+      "jpg": "/assets/products/oval-dining-set-showroom-480w.jpg 480w, /assets/products/oval-dining-set-showroom-960w.jpg 960w, /assets/products/oval-dining-set-showroom-1600w.jpg 1600w"
+    }
+  },
+  "side-table-detail": {
+    "id": "side-table-detail",
+    "originalName": "WhatsApp Image 2026-11-03 at 22.47743.04.jpeg",
+    "isSecondary": true,
+    "width": 574,
+    "height": 1020,
+    "aspectRatio": 0.563,
+    "focal": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "lqip": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAACQAwCdASoLABQAPzmIuVOvKSWisAgB4CcJYwCw7B6P1DlCydjgAP53TXplNJpQhkJq+1/9uKPFmXNPge/kAA==",
+    "palette": [
+      "#903000",
+      "#707050",
+      "#a0a080",
+      "#a04000",
+      "#602000"
+    ],
+    "defaultColor": "#903000",
+    "accentColor": "#707050",
+    "alt": {
+      "ar": "لقطة مقربة لسطح الطاولة الجانبية المستديرة وتفاصيل الخشب المصقول",
+      "fr": "Détail du plateau supérieur de la table d’appoint ronde en bois",
+      "en": "Close-up detail of the round side table polished wood surface"
+    },
+    "src": "/assets/products/side-table-detail-960w.webp",
+    "srcJpg": "/assets/products/side-table-detail-960w.jpg",
+    "srcset": {
+      "avif": "/assets/products/side-table-detail-480w.avif 480w, /assets/products/side-table-detail-960w.avif 960w, /assets/products/side-table-detail-1600w.avif 1600w",
+      "webp": "/assets/products/side-table-detail-480w.webp 480w, /assets/products/side-table-detail-960w.webp 960w, /assets/products/side-table-detail-1600w.webp 1600w",
+      "jpg": "/assets/products/side-table-detail-480w.jpg 480w, /assets/products/side-table-detail-960w.jpg 960w, /assets/products/side-table-detail-1600w.jpg 1600w"
+    }
+  },
+  "velvet-accent-chair-rear": {
+    "id": "velvet-accent-chair-rear",
+    "originalName": "WhatsApp Image 2026-121-03 at 22.43.02.jpeg",
+    "isSecondary": true,
+    "width": 574,
+    "height": 1020,
+    "aspectRatio": 0.563,
+    "focal": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "lqip": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAAAQAwCdASoLABQAPzmEuVOvKKWisAgB4CcJZWiTU0AV8gAAzPuuWfqH9xrQQeQ2/E/zuAyPKUZAAA==",
+    "palette": [
+      "#908070",
+      "#a09080",
+      "#a0a090",
+      "#b0b0a0",
+      "#909080"
+    ],
+    "defaultColor": "#908070",
+    "accentColor": "#a09080",
+    "alt": {
+      "ar": "المنظر الخلفي للكرسي المفرد الفاخر مع الأرجل الفضية",
+      "fr": "Vue arrière du fauteuil texturé avec pieds argentés",
+      "en": "Rear angle of the textured armchair with silver legs"
+    },
+    "src": "/assets/products/velvet-accent-chair-rear-960w.webp",
+    "srcJpg": "/assets/products/velvet-accent-chair-rear-960w.jpg",
+    "srcset": {
+      "avif": "/assets/products/velvet-accent-chair-rear-480w.avif 480w, /assets/products/velvet-accent-chair-rear-960w.avif 960w, /assets/products/velvet-accent-chair-rear-1600w.avif 1600w",
+      "webp": "/assets/products/velvet-accent-chair-rear-480w.webp 480w, /assets/products/velvet-accent-chair-rear-960w.webp 960w, /assets/products/velvet-accent-chair-rear-1600w.webp 1600w",
+      "jpg": "/assets/products/velvet-accent-chair-rear-480w.jpg 480w, /assets/products/velvet-accent-chair-rear-960w.jpg 960w, /assets/products/velvet-accent-chair-rear-1600w.jpg 1600w"
+    }
+  }
+}

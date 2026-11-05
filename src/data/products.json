@@ -1,0 +1,318 @@
+[
+  {
+    "id": "leather-armchair",
+    "category": "seating",
+    "proceduralKey": "leather-armchair",
+    "name": {
+      "ar": "كرسي جلدي فاخر بمسند توفتينغ",
+      "fr": "Fauteuil en cuir prestige capitonné",
+      "en": "Prestige Tufted Leather Armchair"
+    },
+    "tagline": {
+      "ar": "جلد إيطالي ناعم بتنجيد غائر وأرجل معدنية داكنة",
+      "fr": "Cuir doux à capitonnage central et piétement sombre",
+      "en": "Soft top-grain leather with center tufting & dark metal legs"
+    },
+    "description": {
+      "ar": "كرسي مفرد مريح مصمم بأذرع عريضة مع حواف أنيقة (Piping)، وظهر منجد بغرزة وسطية غائرة، مستنداً على هيكل معدني زاوي بلون داكن يعكس الفخامة المعاصرة.",
+      "fr": "Fauteuil ergonomique aux accoudoirs évasés avec passepoil raffiné, dossier capitonné au centre et piétement métallique angulaire sombre.",
+      "en": "Comfortable lounge armchair featuring wide flared arms with delicate piping, center-tufted backrest, and dark angular metal side legs."
+    },
+    "dimensionsCm": {
+      "w": 95,
+      "d": 90,
+      "h": 85
+    },
+    "materials": {
+      "ar": ["جلد طبيعي رمادي", "هيكل فولاذي داكن", "حشوة رغوية عالية الكثافة"],
+      "fr": ["Cuir véritable gris", "Acier foncé brossé", "Mousse haute densité"],
+      "en": ["Genuine grey leather", "Dark brushed steel", "High-density foam"]
+    },
+    "colorOptions": [
+      { "id": "light-grey", "hex": "#807060", "name": { "ar": "رمادي فاتح أصلي", "fr": "Gris clair d’origine", "en": "Original Light Grey" } },
+      { "id": "taupe", "hex": "#706050", "name": { "ar": "توب دافئ", "fr": "Taupe chaud", "en": "Warm Taupe" } },
+      { "id": "charcoal", "hex": "#303030", "name": { "ar": "فحمي داكن", "fr": "Anthracite", "en": "Charcoal" } },
+      { "id": "cognac", "hex": "#8A4B20", "name": { "ar": "كونياك ملكي", "fr": "Cognac royal", "en": "Royal Cognac" } }
+    ]
+  },
+  {
+    "id": "leather-sofa",
+    "category": "seating",
+    "proceduralKey": "leather-sofa",
+    "name": {
+      "ar": "كنبة جلدية متناسقة لشخصين أو ثلاثة",
+      "fr": "Canapé en cuir 2-3 places coordonné",
+      "en": "Matching 2-3 Seater Leather Sofa"
+    },
+    "tagline": {
+      "ar": "تصميم متناغم مع وسائد هندسية ناعمة",
+      "fr": "Lignes pures avec coussins à motifs géométriques",
+      "en": "Harmonious silhouette with soft geometric cushions"
+    },
+    "description": {
+      "ar": "كنبة صالون فاخرة متطابقة مع كرسي الجلد، مزودة بوسادتين مربعتين بنقش هندسي دقيق، تمنح غرفة المعيشة هيبة ورونقاً ملكياً.",
+      "fr": "Canapé de salon haut de gamme assorti au fauteuil, accompagné de deux coussins carrés aux motifs géométriques délicats.",
+      "en": "Luxury living sofa matching the leather armchair design, complete with two square geometric pattern cushions on dark metal architectural legs."
+    },
+    "dimensionsCm": {
+      "w": 210,
+      "d": 95,
+      "h": 85
+    },
+    "materials": {
+      "ar": ["جلد إيطالي رمادي", "وسائد هندسية نسيجية", "أرجل معدنية زاوية"],
+      "fr": ["Cuir italien gris", "Coussins tissés géométriques", "Pieds métal angulaires"],
+      "en": ["Italian grey leather", "Geometric woven cushions", "Angular metal legs"]
+    },
+    "colorOptions": [
+      { "id": "light-grey", "hex": "#A09080", "name": { "ar": "رمادي فاتح", "fr": "Gris clair", "en": "Light Grey" } },
+      { "id": "taupe", "hex": "#B0A090", "name": { "ar": "توب هادئ", "fr": "Taupe doux", "en": "Soft Taupe" } },
+      { "id": "pearl-ivory", "hex": "#D0C0B0", "name": { "ar": "عاجي لؤلؤي", "fr": "Ivoire perlé", "en": "Pearl Ivory" } }
+    ]
+  },
+  {
+    "id": "boucle-sofa",
+    "category": "seating",
+    "proceduralKey": "boucle-sofa",
+    "name": {
+      "ar": "أريكة بوكليه عاجية منحنية",
+      "fr": "Canapé courbé en bouclé ivoire",
+      "en": "Curved Ivory Bouclé Sofa"
+    },
+    "tagline": {
+      "ar": "نسيج بوكليه تركي بقاعدة خشبية دافئة وثلاث وسائد",
+      "fr": "Tissu bouclé texturé, piétement bois chaleureux & 3 coussins",
+      "en": "Textured bouclé upholstery with warm wood base & 3 cushions"
+    },
+    "description": {
+      "ar": "تحفة فنية تجمع بين النعومة القصوى لقماش البوكليه العاجي وقاعدة الخشب الطبيعي المصقول، تشمل وسادتين مربعتين ووسادة مستطيلة وسطية لدعم الظهر.",
+      "fr": "Chef-d’œuvre sculptural mariant la douceur texturée du bouclé ivoire à un socle en bois massif, avec 3 coussins assortis.",
+      "en": "Sculptural curved sofa combining cozy ivory bouclé texture with a handcrafted warm wooden base plinth and three tailored lumbar cushions."
+    },
+    "dimensionsCm": {
+      "w": 220,
+      "d": 98,
+      "h": 82
+    },
+    "materials": {
+      "ar": ["قماش بوكليه عاجي", "خشب زان طبيعي دافئ", "وسائد ريش ناعمة"],
+      "fr": ["Tissu bouclé ivoire", "Hêtre massif chaleureux", "Coussins en duvet doux"],
+      "en": ["Ivory bouclé fabric", "Natural warm hardwood", "Soft feather-blend cushions"]
+    },
+    "colorOptions": [
+      { "id": "ivory", "hex": "#EAE6DC", "name": { "ar": "عاجي طبيعي", "fr": "Ivoire naturel", "en": "Natural Ivory" } },
+      { "id": "sand", "hex": "#D8CFBC", "name": { "ar": "رملي دافئ", "fr": "Sable chaud", "en": "Warm Sand" } },
+      { "id": "sage", "hex": "#9BA898", "name": { "ar": "أخضر مريمي", "fr": "Sauge douce", "en": "Sage Green" } }
+    ]
+  },
+  {
+    "id": "velvet-accent-chair",
+    "category": "seating",
+    "proceduralKey": "velvet-accent-chair",
+    "name": {
+      "ar": "كرسي مفرد فاخر بشريط أسود وأرجل فضية",
+      "fr": "Fauteuil d’appoint bande noire & pieds argent",
+      "en": "Luxury Accent Chair with Black Arm Stripes"
+    },
+    "tagline": {
+      "ar": "نسيج بيج محكم مع خط رأسي أسود مميز على الذراعين",
+      "fr": "Tissu tramé beige-gris, bande noire verticale signature",
+      "en": "Textured beige fabric with signature black arm accent stripes"
+    },
+    "description": {
+      "ar": "كرسي صالون منفرد بتصميم عصري جريء، يتميز بشريط عمودي أسود أنيق على مقدمة الذراعين، ووسادة ظهر مريحة، وأرجل معدنية مصقولة بلون الكروم الفضي اللامع.",
+      "fr": "Fauteuil unique au style affirmé, remarquable par son liseré vertical noir en façade des accoudoirs, son coussin dédié et ses pieds chromés argentés.",
+      "en": "Contemporary single accent chair featuring distinct black vertical accent strips on the arm fronts, matching back cushion, and polished chrome-silver legs."
+    },
+    "dimensionsCm": {
+      "w": 85,
+      "d": 88,
+      "h": 86
+    },
+    "materials": {
+      "ar": ["قماش محكم بيج-رمادي", "شريط تطعيم أسود", "أرجل فولاذية مطلية بالكروم الفضي"],
+      "fr": ["Tissu texturé beige-gris", "Bande d'accent noir", "Pieds en acier chromé argent"],
+      "en": ["Textured beige-grey weave", "Black accent inlay", "Polished chrome silver legs"]
+    },
+    "colorOptions": [
+      { "id": "textured-beige", "hex": "#B8B0A2", "name": { "ar": "بيج نسيجي أصلي", "fr": "Beige texturé d'origine", "en": "Textured Original Beige" } },
+      { "id": "charcoal-grey", "hex": "#484644", "name": { "ar": "رمادي داكن", "fr": "Gris foncé", "en": "Dark Slate" } },
+      { "id": "emerald-green", "hex": "#28443B", "name": { "ar": "أخضر زمردي", "fr": "Vert émeraude", "en": "Emerald Green" } }
+    ]
+  },
+  {
+    "id": "oval-dining-set",
+    "category": "tables",
+    "proceduralKey": "oval-dining-set",
+    "name": {
+      "ar": "طقم مائدة طعام بيضاوي مع 6 كراسي وحامل شموع ذهبي",
+      "fr": "Ensemble salle à manger ovale, 6 chaises & bougeoir doré",
+      "en": "Oval Master Dining Table with 6 Chairs & Gold Candelabra"
+    },
+    "tagline": {
+      "ar": "خشب مصقول دافئ، قاعدة أسطوانية ضخمة، مفرش مع حامل شموع",
+      "fr": "Bois verni lustré, piédestal cylindrique & chemin de table",
+      "en": "Lustrous polished wood, wide cylindrical pedestal & candelabra"
+    },
+    "description": {
+      "ar": "طاولة طعام بيضاوية مهيبة مصنوعة من الخشب الطبيعي المصقول بلمعة زجاجية، ترتكز على قاعدة أسطوانية خشبية متينة، يرافقها 6 كراسي منحنية الظهر ومفرش أبيض بحامل شموع ذهبي.",
+      "fr": "Table de réception ovale d’une brillance remarquable reposant sur un imposant fût cylindrique, complétée par 6 chaises galbées et un bougeoir doré d’apparat.",
+      "en": "Grand oval dining table in high-gloss warm polished hardwood atop a solid cylindrical pedestal, complete with 6 curved-back upholstered chairs and a gold candelabra centerpiece."
+    },
+    "dimensionsCm": {
+      "w": 220,
+      "d": 115,
+      "h": 76
+    },
+    "materials": {
+      "ar": ["خشب جوز مصقول عالي اللمعان", "قماش نسيجي ناعم للكراسي", "برونز وذهب مطلي للشمعدان"],
+      "fr": ["Noyer verni brillant", "Tissu texturé pour assises", "Bougeoir en bronze doré"],
+      "en": ["High-gloss polished walnut", "Textured woven chair fabric", "Gilded brass candelabra"]
+    },
+    "colorOptions": [
+      { "id": "amber-walnut", "hex": "#8B5226", "name": { "ar": "جوز عنبري لامع", "fr": "Noyer ambré brillant", "en": "Lustrous Amber Walnut" } },
+      { "id": "dark-walnut", "hex": "#4A2814", "name": { "ar": "جوز داكن", "fr": "Noyer foncé", "en": "Deep Dark Walnut" } },
+      { "id": "honey-oak", "hex": "#A26C3A", "name": { "ar": "سنديان عسلي", "fr": "Chêne miel", "en": "Honey Oak" } }
+    ]
+  },
+  {
+    "id": "coffee-table",
+    "category": "tables",
+    "proceduralKey": "coffee-table",
+    "name": {
+      "ar": "طاولة قهوة خشبية مستطيلة برف سفلي",
+      "fr": "Table basse rectangulaire avec étagère basse",
+      "en": "Rectangular Solid Wood Coffee Table with Shelf"
+    },
+    "tagline": {
+      "ar": "خشب طبيعي مصقول بخط إطار غائر ومساحة تخزين سفلية",
+      "fr": "Bois naturel avec rainure périphérique et étagère basse",
+      "en": "Natural polished wood with recessed groove & open shelf"
+    },
+    "description": {
+      "ar": "طاولة قهوة عملية وأنيقة، تتميز بحفر خط إطار غائر حول السطح العلوي، ورف سفلي مفتوح للكتب والديكور، وأرجل صلبة منحوتة بتناغم.",
+      "fr": "Table de salon intemporelle sublimée par une rainure périphérique encadrant le plateau et un vaste plateau inférieur ouvert.",
+      "en": "Classic-modern rectangular coffee table crafted with a perimeter inlaid groove on top and an open lower tier for elegant display."
+    },
+    "dimensionsCm": {
+      "w": 130,
+      "d": 70,
+      "h": 46
+    },
+    "materials": {
+      "ar": ["خشب سنديان طبيعي مصقول", "ورنيش حريري مقاوم للسوائل"],
+      "fr": ["Chêne massif verni satiné", "Traitement déperlant protecteur"],
+      "en": ["Solid natural polished oak", "Satin protective clearcoat"]
+    },
+    "colorOptions": [
+      { "id": "natural-oak", "hex": "#8E5632", "name": { "ar": "سنديان طبيعي", "fr": "Chêne naturel", "en": "Natural Oak" } },
+      { "id": "dark-oak", "hex": "#4D2D1B", "name": { "ar": "سنديان داكن", "fr": "Chêne foncé", "en": "Dark Oak" } },
+      { "id": "bleached-oak", "hex": "#C2A884", "name": { "ar": "خشب مبيض", "fr": "Chêne blanchi", "en": "Bleached Oak" } }
+    ]
+  },
+  {
+    "id": "side-table",
+    "category": "tables",
+    "proceduralKey": "side-table",
+    "name": {
+      "ar": "طاولة جانبية كلاسيكية مستديرة بزخارف ذهبية",
+      "fr": "Guéridon classique rond à piétement tripode & or",
+      "en": "Classic Round Pedestal Side Table with Gold Accents"
+    },
+    "tagline": {
+      "ar": "خشب مصقول رفيع مع قاعدة ثلاثية الأرجل وميداليات ذهبية",
+      "fr": "Bois poli raffiné, piétement tripode galbé et médaillons dorés",
+      "en": "Fine polished wood with tripod curved legs & gold medallions"
+    },
+    "description": {
+      "ar": "طاولة دائرية تحفة (Guéridon) كلاسيكية فاخرة، تتميز بأرجل ثلاثية مقوسة بانسيابية، وطابق سفلي مثلث، مع حليات معدنية ذهبية منقوشة على الحافة العلوية.",
+      "fr": "Guéridon d’angle d’exception doté de trois montants galbés, d’une entretoise triangulaire basse et de médaillons ouvragés dorés sur la ceinture.",
+      "en": "Royal accent side table featuring a polished round top, graceful tripod arched legs joined by a lower triangular tier, and ornate gold relief medallions on the rim."
+    },
+    "dimensionsCm": {
+      "w": 55,
+      "d": 55,
+      "h": 68
+    },
+    "materials": {
+      "ar": ["خشب ماهوجني مصقول", "ميداليات برونزية مذهبة", "ورنيش كلاسيكي عالي اللمعان"],
+      "fr": ["Acajou verni au tampon", "Médaillons en bronze doré", "Finition grand lustre"],
+      "en": ["Polished mahogany wood", "Gilded bronze medallions", "High-gloss clear lacquer"]
+    },
+    "colorOptions": [
+      { "id": "rich-mahogany", "hex": "#6A2B14", "name": { "ar": "ماهوجني ملكي", "fr": "Acajou royal", "en": "Royal Mahogany" } },
+      { "id": "warm-cherry", "hex": "#78371B", "name": { "ar": "كرز دافئ", "fr": "Merisier chaud", "en": "Warm Cherry" } },
+      { "id": "antique-gold-leaf", "hex": "#C6A44E", "name": { "ar": "تطعيم ذهبي عتيق", "fr": "Rehauts or antique", "en": "Antique Gold Trim" } }
+    ]
+  },
+  {
+    "id": "curtain-cream",
+    "category": "curtains",
+    "proceduralKey": "curtain-cream",
+    "name": {
+      "ar": "ستائر بليسيه عاجية مع شريط تطريز ذهبي عريض",
+      "fr": "Rideaux plissés crème & large bande brodée d’or",
+      "en": "Pleated Cream Drapery with Wide Gold Embroidery Band"
+    },
+    "tagline": {
+      "ar": "ثنيات بليسيه منتظمة، شريط تطريز يدوي عريض، أربطة لؤلؤية",
+      "fr": "Plis réguliers, imposante frise brodée d'or et embrasses perles",
+      "en": "Precision pleats, wide hand-stitched gold band & pearl tiebacks"
+    },
+    "description": {
+      "ar": "ستائر قصور فاخرة مصنوعة من أقمشة بليسيه عاجية منسدلة، يتوسطها شريط تطريز مذهب عريض منقوش بدقة، مع أربطة لؤلؤية كروية تجمع الستائر بجمال وسحر.",
+      "fr": "Tentures d'apparat en tissu crème plissé, enrichies d'une majestueuse bande horizontale brodée de fils dorés et retenues par de splendides embrasses de perles.",
+      "en": "Palatial luxury drapery featuring pleated ivory textiles adorned with a signature wide gold horizontal embroidery band and pearl cluster tiebacks."
+    },
+    "dimensionsCm": {
+      "w": 300,
+      "d": 20,
+      "h": 280
+    },
+    "materials": {
+      "ar": ["قماش بليسيه عاجي معتم", "تطريز بخيوط الذهب المعدنية", "أربطة لؤلؤية مجدولة"],
+      "fr": ["Tissu plissé occultant crème", "Broderie aux fils dorés métallisés", "Embrasses perlées tressées"],
+      "en": ["Pleated blackout ivory fabric", "Metallic gold embroidery thread", "Woven pearl bead tiebacks"]
+    },
+    "colorOptions": [
+      { "id": "creamy-ivory", "hex": "#EBE6D8", "name": { "ar": "عاجي كريمي", "fr": "Ivoire crémeux", "en": "Creamy Ivory" } },
+      { "id": "pearl-white", "hex": "#F6F4EE", "name": { "ar": "أبيض لؤلؤي", "fr": "Blanc perlé", "en": "Pearl White" } },
+      { "id": "champagne", "hex": "#E0D5C1", "name": { "ar": "شامبانيا ملكي", "fr": "Champagne royal", "en": "Royal Champagne" } }
+    ]
+  },
+  {
+    "id": "curtain-taupe",
+    "category": "curtains",
+    "proceduralKey": "curtain-taupe",
+    "name": {
+      "ar": "ستائر هندسية ثقيلة بلون رمادي توب وشيفون أبيض",
+      "fr": "Draperies géométriques gris-taupe & voilage blanc",
+      "en": "Heavy Geometric Taupe Curtains with White Sheer"
+    },
+    "tagline": {
+      "ar": "قماش ثقيل بنقش هندسي بارز، شيفون ناعم، أربطة لؤلؤ",
+      "fr": "Tissu lourd à motifs jacquard, voilage aérien & perles",
+      "en": "Heavy jacquard geometric weave, airy inner sheer & pearls"
+    },
+    "description": {
+      "ar": "طقم ستائر ملكي مزدوج يتألف من طبقة خارجية سميكة بنقش هندسي دقيق بلون رمادي توب تعزل الضوء والصوت، وطبقة شيفون داخلي أبيض منسدل، مثبتة بأربطة لؤلؤية ساحرة.",
+      "fr": "Ensemble complet comprenant de lourdes tentures jacquard gris-taupe à motifs géométriques et un voilage translucide blanc vaporeux, retenus par d'élégantes perles.",
+      "en": "Dual palatial drapery system composed of heavy geometric textured taupe curtains paired with a delicate white sheer layer and lustrous pearl tiebacks."
+    },
+    "dimensionsCm": {
+      "w": 320,
+      "d": 25,
+      "h": 280
+    },
+    "materials": {
+      "ar": ["نسيج جاكار هندسي ثقيل", "شيفون حريري أبيض نقي", "أربطة لؤلؤية عاكسة للضوء"],
+      "fr": ["Jacquard géométrique épais", "Voilage blanc soyeux", "Embrasses perles nacrées"],
+      "en": ["Heavy geometric jacquard", "Pure silk-sheer white drapery", "Lustrous pearl tiebacks"]
+    },
+    "colorOptions": [
+      { "id": "slate-taupe", "hex": "#7E776F", "name": { "ar": "رمادي توب أصلي", "fr": "Gris taupe d’origine", "en": "Original Slate Taupe" } },
+      { "id": "charcoal-silver", "hex": "#54504B", "name": { "ar": "فحمي فضي", "fr": "Anthracite argenté", "en": "Silver Charcoal" } },
+      { "id": "warm-sand-taupe", "hex": "#A29A90", "name": { "ar": "توب رملي دافئ", "fr": "Taupe sable chaud", "en": "Warm Sand Taupe" } }
+    ]
+  }
+]

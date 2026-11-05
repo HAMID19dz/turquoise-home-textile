@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turquoise Home Textile — أثاث ومنسوجات فاخرة ثلاثية الأبعاد</title>
+    <meta
+      name="description"
+      content="تركواز للأثاث والمنسوجات المنزلية الفاخرة — تجربة عرض وتصميم ثلاثية الأبعاد تفاعلية حسب الطلب في الجزائر. رخام أبيض وذهب وأقمشة راقية."
+    />
+    <meta name="keywords" content="أثاث فاخر, ستائر ملكية, تصميم 3D, صالونات راقية, تركواز, الجزائر, Turquoise Home Textile" />
+    <meta name="author" content="Turquoise Home Textile" />
+
+    <!-- PWA & Mobile Web App Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#121212" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Turquoise Home" />
+
+    <!-- Favicon & Touch Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- OpenGraph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://turquoise-textile.dz/" />
+    <meta property="og:title" content="Turquoise Home Textile — أثاث ومنسوجات فاخرة 3D" />
+    <meta property="og:description" content="استكشف وصمّم أثاثك وستائرك الفاخرة ثلاثية الأبعاد حسب الطلب مع تركواز." />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="ar_DZ" />
+    <meta property="og:locale:alternate" content="fr_DZ" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Turquoise Home Textile — أثاث ومنسوجات فاخرة 3D" />
+    <meta name="twitter:description" content="استكشف وصمّم أثاثك وستائرك الفاخرة ثلاثية الأبعاد حسب الطلب مع تركواز." />
+    <meta name="twitter:image" content="/og-image.jpg" />
+
+    <!-- JSON-LD Structured Data: FurnitureStore & LocalBusiness -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FurnitureStore",
+        "@id": "https://turquoise-textile.dz/#store",
+        "name": "Turquoise Home Textile | تركواز للأثاث والمنسوجات المنزلية",
+        "alternateName": "تركواز للأثاث",
+        "description": "معرض وتخصيص ثلاثي الأبعاد للأثاث الراقي والستائر الفاخرة حسب الطلب في الجزائر",
+        "url": "https://turquoise-textile.dz/",
+        "logo": "https://turquoise-textile.dz/logo.png",
+        "image": "https://turquoise-textile.dz/og-image.jpg",
+        "telephone": "+213556929134",
+        "priceRange": "$$$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Alger",
+          "addressCountry": "DZ"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+213556929134",
+          "contactType": "customer service",
+          "contactOption": "WhatsApp",
+          "availableLanguage": ["Arabic", "French", "English"]
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-marble-200 text-charcoal antialiased selection:bg-gold-light selection:text-charcoal-dark min-h-screen">
+    <div id="root"></div>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch((err) => {
+            console.debug('ServiceWorker registration skipped:', err);
+          });
+        });
+      }
+    </script>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

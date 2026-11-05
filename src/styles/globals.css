@@ -1,0 +1,106 @@
+@import '@fontsource/amiri/400.css';
+@import '@fontsource/amiri/700.css';
+@import '@fontsource/cairo/400.css';
+@import '@fontsource/cairo/600.css';
+@import '@fontsource/cairo/700.css';
+@import '@fontsource/cormorant-garamond/400.css';
+@import '@fontsource/cormorant-garamond/600.css';
+@import '@fontsource/cormorant-garamond/700.css';
+@import '@fontsource/inter/300.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-gold: #D4AF37;
+  --color-gold-deep: #C5A059;
+  --color-gold-light: #F3E2A9;
+  --color-gold-dark: #9A7B2F;
+  --color-charcoal: #2B2B2B;
+  --color-marble-white: #FFFFFF;
+  --color-marble-cream: #F8F6F2;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+/* Language font assignments */
+html[lang='ar'] body {
+  font-family: 'Cairo', system-ui, sans-serif;
+}
+html[lang='ar'] h1,
+html[lang='ar'] h2,
+html[lang='ar'] h3,
+html[lang='ar'] .font-heading {
+  font-family: 'Amiri', 'Cairo', serif;
+}
+
+html[lang='fr'] body,
+html[lang='en'] body {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+html[lang='fr'] h1,
+html[lang='fr'] h2,
+html[lang='fr'] h3,
+html[lang='fr'] .font-heading,
+html[lang='en'] h1,
+html[lang='en'] h2,
+html[lang='en'] h3,
+html[lang='en'] .font-heading {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Subtle SVG marble vein background */
+.bg-marble-texture {
+  background-color: #F8F6F2;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.03) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(197, 160, 89, 0.04) 0px, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cpath d='M0,120 Q80,180 150,110 T320,130 T400,90' fill='none' stroke='rgba(197, 160, 89, 0.025)' stroke-width='1.5'/%3E%3Cpath d='M0,280 Q100,220 220,310 T400,260' fill='none' stroke='rgba(197, 160, 89, 0.02)' stroke-width='1.2'/%3E%3C/svg%3E");
+}
+
+/* Metallic gold gradient text and borders */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #C5A059 0%, #D4AF37 50%, #F3E2A9 75%, #C5A059 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-gold-gradient {
+  border-image: linear-gradient(135deg, #C5A059, #D4AF37, #F3E2A9, #C5A059) 1;
+}
+
+/* Refined custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F8F6F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C5A059;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

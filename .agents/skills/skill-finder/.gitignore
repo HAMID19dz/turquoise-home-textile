@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment / secrets
+.env
+.env.*
+
+# Pipeline intermediates — not needed at runtime
+data/raw/
+data/embeddings.npy
+data/*.jsonl
+!data/release_log.jsonl
+data/trial/
+data/logs/
+
+# Incremental crawl state (machine-local; cached by CI, not committed)
+data/crawl_state/
+data/deep_crawl_state.json
+
+# Local logs
+logs/
+
+# Test / coverage artefacts
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Claude Code local settings (may contain tokens / allowlists)
+.claude/
+
+# Superpowers plans/scratch and agent memory (local-only, not committed)
+superpowers/
+.superpowers/
+memory/

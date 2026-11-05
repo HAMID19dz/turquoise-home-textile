@@ -1,0 +1,26 @@
+{
+  "name": "Turquoise Home Textile | تركواز للأثاث والمنسوجات المنزلية",
+  "short_name": "Turquoise Home",
+  "description": "معرض وتخصيص ثلاثي الأبعاد للأثاث الراقي والستائر الفاخرة حسب الطلب",
+  "start_url": "/ar",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F8F6F2",
+  "theme_color": "#121212",
+  "categories": ["lifestyle", "shopping", "design"],
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
