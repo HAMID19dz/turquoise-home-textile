@@ -1,12 +1,17 @@
 # Turquoise Home Textile — 3D Showcase & Atelier
 ### تركواز للأثاث والمنسوجات المنزلية الفاخرة
 
+[![Live on Cloudflare Pages](https://img.shields.io/badge/Live-Cloudflare%20Pages-f38020.svg)](https://turquoise-home.pages.dev/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-HAMID19dz%2Fturquoise--home--textile-181717.svg)](https://github.com/HAMID19dz/turquoise-home-textile)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue.svg)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18.3-61dafb.svg)](https://react.dev/)
 [![Three.js](https://img.shields.io/badge/Three.js-r163-black.svg)](https://threejs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38b2ac.svg)](https://tailwindcss.com/)
 [![Vitest](https://img.shields.io/badge/Vitest-2.1-green.svg)](https://vitest.dev/)
 [![PWA Ready](https://img.shields.io/badge/PWA-Ready-purple.svg)](https://web.dev/progressive-web-apps/)
+
+**Live Production URL:** [https://turquoise-home.pages.dev/](https://turquoise-home.pages.dev/)  
+**GitHub Repository:** [https://github.com/HAMID19dz/turquoise-home-textile](https://github.com/HAMID19dz/turquoise-home-textile)
 
 An interactive 3D luxury furniture and bespoke home drapery showroom created for **Turquoise Home Textile**, an haute manufacture established in Algiers, Algeria. The platform combines a neoclassical **"White Marble & Gold, Greek Columns"** aesthetic with physical PBR 3D rendering, procedural bespoke customization, multi-item quote aggregation, and direct WhatsApp quotation dispatch.
 
