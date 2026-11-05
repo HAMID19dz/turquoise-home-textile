@@ -119,6 +119,7 @@
     "topButton": "Back to Top"
   },
   "viewer": {
+    "dragRotate": "Drag to rotate in 3D • Scroll to zoom",
     "dayLighting": "Daylight Studio",
     "eveningLighting": "Warm Evening Ambience",
     "resetCamera": "Reset Camera",

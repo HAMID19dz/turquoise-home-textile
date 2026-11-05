@@ -7,7 +7,7 @@ interface StudioFloorProps {
   radius?: number;
 }
 
-export const StudioFloor: React.FC<StudioFloorProps> = ({ radius = 3.6 }) => {
+export const StudioFloor: React.FC<StudioFloorProps> = ({ radius = 3.2 }) => {
   const marbleTexture = useMemo(() => getMarbleFloorTexture(), []);
 
   return (

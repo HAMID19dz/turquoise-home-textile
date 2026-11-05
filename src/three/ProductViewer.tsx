@@ -333,60 +333,62 @@ export const ProductViewer: React.FC<ProductViewerProps> = ({
 
       {/* ================= MAIN DISPLAY AREA ================= */}
       {viewMode === '3d' ? (
-        <ViewerErrorBoundary
-          fallbackPhoto={product.photo}
-          productName={product.name[language]}
-          language={language}
-        >
-          <Canvas
-            shadows
-            camera={{ position: [2.6, 1.8, 3.2], fov: 42 }}
-            gl={{
-              antialias: true,
-              alpha: true,
-              powerPreference: 'high-performance',
-              toneMapping: THREE.ACESFilmicToneMapping,
-              toneMappingExposure: lightingPreset === 'day' ? 1.05 : 1.15,
-            }}
-            dpr={[1, 1.75]}
-            className="w-full h-full cursor-grab active:cursor-grabbing"
+        <div className="absolute inset-0 w-full h-full">
+          <ViewerErrorBoundary
+            fallbackPhoto={product.photo}
+            productName={product.name[language]}
+            language={language}
           >
-            {/* Realistic Lightformers Studio Environment */}
-            <StudioEnvironment preset={lightingPreset} />
+            <Canvas
+              shadows
+              camera={{ position: [2.8, 1.9, 3.4], fov: 42 }}
+              gl={{
+                antialias: true,
+                alpha: true,
+                powerPreference: 'high-performance',
+                toneMapping: THREE.ACESFilmicToneMapping,
+                toneMappingExposure: lightingPreset === 'day' ? 1.05 : 1.15,
+              }}
+              dpr={[1, 1.75]}
+              className="w-full h-full cursor-grab active:cursor-grabbing"
+            >
+              {/* Realistic Lightformers Studio Environment */}
+              <StudioEnvironment preset={lightingPreset} />
 
-            {/* Soft Carrara Marble Plinth Floor + Contact Shadows */}
-            <StudioFloor />
+              {/* Soft Carrara Marble Plinth Floor + Contact Shadows */}
+              <StudioFloor radius={3.2} />
 
-            {/* Core Model (GLB or Procedural) */}
-            <ModelViewerCore
-              product={product}
-              colorHex={currentColorHex}
-              metalHex={activeMetalHex}
-              woodHex={activeWoodHex}
-              dimensionsCm={customDimensions}
-              glbUrl={customGlbUrl}
-            />
+              {/* Core Model (GLB or Procedural) */}
+              <ModelViewerCore
+                product={product}
+                colorHex={currentColorHex}
+                metalHex={activeMetalHex}
+                woodHex={activeWoodHex}
+                dimensionsCm={customDimensions}
+                glbUrl={customGlbUrl}
+              />
 
-            {/* OrbitControls Clamped for Showroom Presentation */}
-            <OrbitControls
-              ref={controlsRef}
-              enableDamping
-              dampingFactor={0.06}
-              minDistance={1.4}
-              maxDistance={5.8}
-              maxPolarAngle={Math.PI / 2.05} // Never dip beneath marble floor
-              minPolarAngle={0.15}
-              autoRotate={isAutoRotating}
-              autoRotateSpeed={0.9}
-              enablePan={false}
-              target={[0, 0.45, 0]}
-              onStart={() => setIsAutoRotating(false)}
-            />
-          </Canvas>
-        </ViewerErrorBoundary>
+              {/* OrbitControls Clamped for Showroom Presentation */}
+              <OrbitControls
+                ref={controlsRef}
+                enableDamping
+                dampingFactor={0.06}
+                minDistance={1.4}
+                maxDistance={5.8}
+                maxPolarAngle={Math.PI / 2.05} // Never dip beneath marble floor
+                minPolarAngle={0.15}
+                autoRotate={isAutoRotating}
+                autoRotateSpeed={0.9}
+                enablePan={false}
+                target={[0, 0.45, 0]}
+                onStart={() => setIsAutoRotating(false)}
+              />
+            </Canvas>
+          </ViewerErrorBoundary>
+        </div>
       ) : (
         /* Real Showroom Photo Mode */
-        <div className="relative w-full h-full flex items-center justify-center p-4">
+        <div className="absolute inset-0 w-full h-full flex items-center justify-center p-4">
           {product.photo && (
             <img
               src={product.photo.src}

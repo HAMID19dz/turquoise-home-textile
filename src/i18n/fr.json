@@ -119,6 +119,7 @@
     "topButton": "Haut de page"
   },
   "viewer": {
+    "dragRotate": "Glissez pour pivoter en 3D • Défilez pour zoomer",
     "dayLighting": "Lumière du jour",
     "eveningLighting": "Ambiance nocturne chaleureuse",
     "resetCamera": "Réinitialiser la caméra",

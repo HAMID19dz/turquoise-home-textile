@@ -119,6 +119,7 @@
     "topButton": "إلى الأعلى"
   },
   "viewer": {
+    "dragRotate": "اسحب للتدوير 3D • استخدم العجلة للتقريب",
     "dayLighting": "إضاءة نهارية",
     "eveningLighting": "إضاءة مسائية دافئة",
     "resetCamera": "إعادة ضبط الكاميرا",

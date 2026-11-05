@@ -111,11 +111,11 @@ export const QuickViewerModal: React.FC<QuickViewerModalProps> = ({
           </div>
 
           {/* Modal 3D Stage Body */}
-          <div className="relative flex-1 min-h-[420px] sm:min-h-[500px] p-2 sm:p-4 bg-marble-200/50">
+          <div className="relative w-full h-[480px] sm:h-[540px] md:h-[580px] p-2 sm:p-4 bg-marble-200/50">
             <ProductViewer
               product={product}
               activeColorHex={initialColorHex}
-              className="w-full h-full min-h-[400px] sm:min-h-[480px]"
+              className="w-full h-full"
             />
           </div>
 
